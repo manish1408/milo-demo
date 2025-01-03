@@ -1,0 +1,460 @@
+<div class="row">
+  <div class="col-3">
+    <ng-container *ngIf="!loading">
+      <h4 class="title">Leads</h4>
+      <p class="desc">
+        Leads List
+      </p>
+    </ng-container>
+ <div *ngIf="loading">
+    <span>
+      <span class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </span>
+    </span>
+  </div>
+  </div>
+ 
+  <div class="col-3">
+    <div class="dropdown  float-end">
+      <a class="paginate_button dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+        <b>Sort By:</b> &nbsp; <i>{{sortSelection.text}}
+        </i> </a>
+      <ul class="dropdown-menu chat-drop p-0">
+        <ng-container>
+          <li *ngFor="let sortValue of sortingArray">
+            <a role="button" class="dropdown-item" (click)="sortSelected(sortValue)">{{ sortValue.text }}</a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="d-flex flex-direction-row">
+      <a class="paginate_button dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+        {{filterType}}
+      </a>
+      <ul class="dropdown-menu chat-drop p-0">
+        <ng-container>
+          <li *ngFor="let filters of filtersArray">
+            <a role="button" class="dropdown-item" (click)="filterBy(filters)">{{ filters }}</a>
+          </li>
+        </ng-container>
+      </ul>
+      <div class="input-group position-relative">
+        <input type="text" [formControl]="filterInputValue" class="search-input pl-5"
+          placeholder="Search by {{filterType}}" />
+        <img src="assets/icons/search.svg" alt="Search Icon" class="search-icon" (click)="searchByFilter()" />
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="input-group position-relative float-end">
+      <input type="text" [formControl]="searchText" class="search-input pl-5" placeholder="Search Lead ..." />
+      <img src="assets/icons/search.svg" alt="Search Icon" class="search-icon" (click)="searchLead()" />
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <!--  -->
+            <th scope="col">Company</th>
+            <th scope="col">Root Domain</th>
+            <th scope="col">Vertical</th>
+            <th scope="col">Country</th>
+            <th scope="col">Contacts</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Reviewed</th>
+            <th scope="col">Qualified</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lead of allLeadList">
+            <td>{{lead?.company }}</td>
+            <td><a [href]="'https://'+lead?.rootDomain" target="_blank"> {{lead?.rootDomain }}</a> </td>
+            <td>{{lead?.vertical }}</td>
+            <td>{{lead?.country }}</td>
+            <td>{{lead?.contacts?.length || 0}} contact</td>
+            <td>{{lead?.pageRank}}</td>
+            <td>
+              <input type="checkbox" style="width: 20px; height: 20px;" [(ngModel)]="lead.isReviewed"
+                (change)="onIsReviewedChange(lead)" />
+            </td>
+            <td>
+              <input type="checkbox" style="width: 20px; height: 20px;" [(ngModel)]="lead.isQualified"
+                (change)="onIsReviewedChange(lead)" />
+            </td>
+            <td>
+              <img src="assets/icons/eye.svg" data-bs-toggle="modal" data-bs-target="#leadDetailModal"
+                class="cursor-pointer me-2" (click)="getLeadDetail(lead?.rootDomain )" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-6">
+    Page {{currentPage}} of {{totalPages}} 
+  </div>
+
+  <div class="col-6">
+    <div *ngIf="allLeadList?.length" class="dataTables_paginate paging_simple_numbers" id="basic-1_paginate">
+      <a *ngIf="currentPage > 1" class="paginate_button " aria-controls="basic-1" data-dt-idx="0" id="basic-1_previous"
+        (click)="onPreviousButtonClick()">Previous</a>
+        <input type="number" [(ngModel)]="pageNumber" (keydown.enter)="onPageNumberChange()" class="pagination-input" min="1" placeholder="#" />
+    
+      <a *ngIf="allLeadList?.length == 20" class="paginate_button " aria-controls="basic-1" data-dt-idx="3"
+        id="basic-1_next" (click)="onNextButtonClick()">Next</a>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Lead Detail Modal -->
+<div class="modal fade" id="leadDetailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background: none">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content" style="background: white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          Lead Detail
+        </h5>
+        <img src="../../assets/icons/cross-red.svg" #closebutton class="cursor-pointer" data-bs-toggle="modal" />
+      </div>
+      <div class="modal-body">
+
+        <!-- Tabs Navigation -->
+        <ul class="nav nav-tabs" id="leadTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
+              type="button" role="tab" aria-controls="general" aria-selected="true">General</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+              role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="outreach-tab" data-bs-toggle="tab" data-bs-target="#outreach" type="button"
+              role="tab" aria-controls="outreach" aria-selected="false">Outreach</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="ppt-tab" data-bs-toggle="tab" data-bs-target="#ppt" type="button" role="tab"
+              aria-controls="ppt" aria-selected="false">PPT Slide</button>
+          </li>
+        </ul>
+        <form [formGroup]="leadDetailForm">
+          <!-- Tabs Content -->
+          <div class="tab-content mt-3" id="leadTabsContent">
+            <!-- General Tab -->
+            <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+              <div class="row">
+                <div class="col-12">
+                  <label class="form-label">About Company</label>
+                  <div class="mb-3">
+                    <textarea type="text" formControlName="aboutCompany" class="form-control"
+                      placeholder="Add about company">
+              </textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Company Name:</label>
+                    <span> {{leadDetail?.company}} </span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Root Name:</label>
+                    <span> {{leadDetail?.rootDomain}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Vertical:</label>
+                    <span> {{leadDetail?.vertical}} </span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Country:</label>
+                    <span> {{leadDetail?.country}} </span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">City:</label>
+                    <span> {{leadDetail?.city}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Email:</label>
+                    <span> {{leadDetail?.emails?.split(';')[0] || ''}}</span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Technology Spend Amount:</label>
+                    <span> {{leadDetail?.technologySpend}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Page Rank:</label>
+                    <span> {{leadDetail?.pageRank}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Cloud Flare Rank:</label>
+                    <span> {{leadDetail?.cloudflareRank}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Crux Rank:</label>
+                    <span> {{leadDetail?.cruxRank}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label">Number of Employees:</label>
+                    <span> {{leadDetail?.employees}} </span>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="websiteUrl" class="form-label"> Zip:</label>
+                    <span> {{leadDetail?.zip}} </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Contact Tab -->
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              <div class="row">
+                <div class="col-12">
+                  <form [formGroup]="leadDetailForm">
+                    <div formArrayName="contacts">
+                      <div *ngFor="let contact of contacts.controls; let i = index" [formGroupName]="i" class="mb-3">
+                        <div class="input-group">
+                          <!-- Contact Name -->
+                          <div class="col">
+                            <input type="text" formControlName="name" class="form-control" placeholder="Contact Name"
+                              aria-label="Contact Name" />
+                            <div *ngIf="contact.get('name')?.touched && contact.get('name')?.invalid"
+                              class="invalid-feedback d-block">
+                              <span *ngIf="contact.get('name')?.hasError('required')">Contact Name is required.</span>
+                            </div>
+                          </div>
+
+
+                          <!-- LinkedIn -->
+                          <div class="col">
+                            <input type="url" formControlName="linkedin" class="form-control" placeholder="LinkedIn URL"
+                              aria-label="LinkedIn URL" />
+                            <div *ngIf="contact.get('linkedin')?.touched && contact.get('linkedin')?.invalid"
+                              class="invalid-feedback d-block">
+                              <span *ngIf="contact.get('linkedin')?.hasError('required')">LinkedIn URL is
+                                required.</span>
+                            </div>
+                          </div>
+
+
+
+                          <!-- Email -->
+                          <div class="col">
+                            <input type="email" formControlName="email" class="form-control" placeholder="Email"
+                              aria-label="Email" />
+                            <div *ngIf="contact.get('email')?.touched && contact.get('email')?.invalid"
+                              class="invalid-feedback d-block">
+                              <span *ngIf="contact.get('email')?.hasError('required')">Email is required.</span>
+                              <span *ngIf="contact.get('email')?.hasError('email')">Please enter a valid email
+                                address.</span>
+                            </div>
+                          </div>
+
+                          <!-- Phone Number 1 -->
+                          <div class="col">
+                            <input type="tel" formControlName="phone1" class="form-control" placeholder="Phone Number 1"
+                              aria-label="Phone Number 1" />
+                          </div>
+
+                          <!-- Phone Number 2 -->
+                          <div class="col">
+                            <input type="tel" formControlName="phone2" class="form-control" placeholder="Phone Number 2"
+                              aria-label="Phone Number 2" />
+                          </div>
+
+                          <!-- Remove Button -->
+                          <button class="btn btn-danger" type="button" (click)="removeContact(i)">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+
+                  <div class="input-group mb-3">
+                    <button class="btn btn-primary" type="button" (click)="addContact()">Add Contact</button>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
+            <!-- Outreach Tab -->
+            <div class="tab-pane fade" id="outreach" role="tabpanel" aria-labelledby="outreach-tab">
+              <div class="row">
+                <div class="col-12">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label for="followUp1" class="form-label">Initial Email: {{leadDetail?.initial_email?.subject}}</label>
+                    <div>
+                      <!-- Status Badge -->
+                      <span class="badge bg-danger me-2" *ngIf="leadDetail?.initial_email?.status === 'Not Replied' ">
+                        {{leadDetail?.initial_email?.status}}
+                      </span>
+
+                      <span class="badge bg-warning me-2" *ngIf="leadDetail?.initial_email?.status === 'Awaiting Reply' ">
+                        {{leadDetail?.initial_email?.status}}
+                      </span>
+
+                      <span class="badge bg-success me-2" *ngIf="leadDetail?.initial_email?.status === 'Replied' ">
+                        {{leadDetail?.initial_email?.status}}
+                      </span>
+                      <!-- Sent On Date Badge -->
+                      <span class="badge bg-secondary">Sent on: {{leadDetail?.initial_email?.sent_on | date:'medium'}}</span>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <textarea id="followUp1" formControlName="initial_email" class="form-control"
+                      placeholder="Enter follow-up notes here..."></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label for="followUp1" class="form-label">Follow up 1: {{leadDetail?.follow_up_1?.subject}}</label>
+                    <div>
+                      <!-- Status Badge -->
+                      <span class="badge bg-danger me-2" *ngIf="leadDetail?.follow_up_1?.status === 'Not Replied' ">
+                        {{leadDetail?.follow_up_1?.status}}
+                      </span>
+
+                      <span class="badge bg-warning me-2" *ngIf="leadDetail?.follow_up_1?.status === 'Awaiting Reply' ">
+                        {{leadDetail?.follow_up_1?.status}}
+                      </span>
+
+                      <span class="badge bg-success me-2" *ngIf="leadDetail?.follow_up_1?.status === 'Replied' ">
+                        {{leadDetail?.follow_up_1?.status}}
+                      </span>
+                      
+                       <!-- Sent On Date Badge -->
+                       <span class="badge bg-secondary">Sent on: {{leadDetail?.follow_up_1?.sent_on | date:'medium'}}</span>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <textarea id="followUp1" formControlName="follow_up_1" class="form-control"
+                      placeholder="Enter follow-up notes here..."></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label for="followUp1" class="form-label">Follow up 2: {{leadDetail?.follow_up_2?.subject}}</label>
+                    <div>
+                      <!-- Status Badge -->
+                      <span class="badge bg-danger me-2" *ngIf="leadDetail?.follow_up_2?.status === 'Not Replied' ">
+                        {{leadDetail?.follow_up_2?.status}}
+                      </span>
+
+                      <span class="badge bg-warning me-2" *ngIf="leadDetail?.follow_up_2?.status === 'Awaiting Reply' ">
+                        {{leadDetail?.follow_up_2?.status}}
+                      </span>
+
+                      <span class="badge bg-success me-2" *ngIf="leadDetail?.follow_up_2?.status === 'Replied' ">
+                        {{leadDetail?.follow_up_2?.status}}
+                      </span>
+                      
+                       <!-- Sent On Date Badge -->
+                       <span class="badge bg-secondary">Sent on: {{leadDetail?.follow_up_2?.sent_on | date:'medium'}}</span>
+                    </div>
+                  </div>
+
+
+                  <div class="mb-3">
+                    <textarea type="text" formControlName="follow_up_2" class="form-control" placeholder=""></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Linkedin Follow up</label>
+                  <div class="mb-3">
+                    <textarea type="text" formControlName="linkedin_follow_up" class="form-control"
+                      placeholder=""></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Final follow up (Linkedin)</label>
+                  <div class="mb-3">
+                    <textarea type="text" formControlName="final_follow_up_linkedin" class="form-control"
+                      placeholder=""></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                    <button [disabled]="generatingMessage" class="btn btn-primary float-end m-4" (click)="generateMessage()" type="button">
+                        Generate Message
+                      <span *ngIf="generatingMessage" style="width: 24px;height: 24px;" class="spinner-border text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </span>
+                    </button>
+                </div>
+              </div>
+            </div>
+            <!-- Contact Tab -->
+            <div class="tab-pane fade" id="ppt" role="tabpanel" aria-labelledby="ppt-tab">
+              <div class="row">
+                <div class="col-12">
+                  <a href="https://dclcmsdocs.blob.core.windows.net/dcl-erp-docs/{{leadDetail?.pptSlide}}" target="_blank"> <img src="../../assets/icons/pdf.svg"></a>
+                  <div class="input-group mb-3">
+                    <button [disabled]="generatingMessage" class="btn btn-primary float-end" (click)="generatePPT()" type="button">
+                      Generate PPT
+                    <span *ngIf="generatingMessage" style="width: 24px;height: 24px;" class="spinner-border text-dark" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </span>
+                  </button>
+
+                  <button [disabled]="generatingMessage" class="btn btn-primary float-end" (click)="createChatbot()" type="button">
+                    Create chatbot
+                  <span *ngIf="generatingMessage" style="width: 24px;height: 24px;" class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </span>
+                </button>
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+              <button class="btn btn-primary" (click)="updateLeadDetail()" type="button">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
