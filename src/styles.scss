@@ -26,6 +26,7 @@
 }
 body {
   font-family: beatrice, sans-serif;
+  overflow: hidden;
 }
 
 .generic-form-box .input-field input.is-invalid {
@@ -122,7 +123,7 @@ input:checked + .slider:before {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #072032;
-  background-color: #6be3aa;
+  background-color: #04aa5c;
 }
 .dropdown-menu {
   border-radius: 12px;
@@ -148,7 +149,7 @@ input:checked + .slider:before {
 
 .dropdown-item:hover {
   border-radius: 0px !important;
-  background: #6be3aa !important;
+  background: #04aa5c !important;
   overflow: hidden;
   color: #101828 !important;
 }
@@ -157,13 +158,21 @@ input:checked + .slider:before {
 .dropdown-item:active {
   color: #344054;
   text-decoration: none;
-  background-color: #6be3aa !important;
+  background-color: #04aa5c !important;
 }
 
 .btn-primary {
   color: #072032;
-  background-color: #6be3aa;
+  background-color: #04aa5c;
+  border: #007b5e !important;
+  color: #fff !important;
   // border
+}
+.btn-primary:hover {
+  color: #072032;
+  background-color: #04aa5c;
+  border: #007b5e !important;
+  color: #fff !important;
 }
 
 .btn {
@@ -206,15 +215,15 @@ input:checked + .slider:before {
 
 .btn-primary {
   --bs-btn-color: #072032;
-  --bs-btn-bg: #6be3aa;
+  --bs-btn-bg: #04aa5c;
   --bs-btn-border-color: #b5f1d4;
   --bs-btn-hover-color: #072032;
   --bs-btn-hover-bg: #b5f1d4;
-  --bs-btn-hover-border-color: #6be3aa;
+  --bs-btn-hover-border-color: #04aa5c;
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
   --bs-btn-active-color: #072032;
-  --bs-btn-active-bg: #6be3aa;
-  --bs-btn-active-border-color: #6be3aa;
+  --bs-btn-active-bg: #04aa5c;
+  --bs-btn-active-border-color: #04aa5c;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #07203276;
   --bs-btn-disabled-bg: #b5f1d4;
@@ -337,9 +346,9 @@ input:checked + .slider:before {
 
 #tabs .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: #6be3aa;
+  color: #04aa5c;
   background-color: transparent;
-  border-color: transparent transparent #6be3aa;
+  border-color: transparent transparent #04aa5c;
   border-bottom: 2px solid !important;
   font-size: 16px;
   font-weight: 500;
@@ -367,7 +376,7 @@ input:checked + .slider:before {
 .nav-tabs .nav-link:hover {
   isolation: isolate;
   border: 2px solid transparent;
-  border-bottom: 2px solid #6be3aa !important;
+  border-bottom: 2px solid #04aa5c !important;
 }
 
 .badge {
@@ -414,7 +423,7 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider {
-  background-color: #6be3aa;
+  background-color: #04aa5c;
 }
 
 .form-control {
@@ -475,8 +484,8 @@ input:checked + .slider {
 }
 
 .form-check-input:checked {
-  background-color: #6be3aa;
-  border-color: #6be3aa;
+  background-color: #04aa5c;
+  border-color: #04aa5c;
 }
 
 .w-60 {

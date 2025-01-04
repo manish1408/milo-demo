@@ -1,0 +1,42 @@
+.iframe-website {
+    border: 0;
+    width: 100%;
+    height: calc(100vh - 90px);
+}
+.dcl-header {
+    height: 70px;
+    background: #000;
+    padding: 10px;
+}
+.logo-img {
+    width: 124px;
+    margin-top: 5px;
+}
+.notification-header {
+    text-align: center;
+    background: yellowgreen;
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+}
+.top-navigation {
+    display: flex; /* Display list items in one line */
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 15px;
+}
+
+.top-navigation li {
+    margin-right: 40px; /* Add some spacing between links */
+    margin-left: 15px; /* Add some spacing between links */
+}
+
+.top-navigation a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set text color to white */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.top-navigation a:hover {
+    color: #04aa5c; /* Change color to green on hover */
+}

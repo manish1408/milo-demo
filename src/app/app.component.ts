@@ -5,7 +5,6 @@ import { UserService } from './_services/user.service';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { EventService } from './_services/event.service';
 import { ChatService } from './_services/chat.service';
-import { routeUrls } from './constant/shared-constant';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from './_services/local-storage.service';
@@ -47,11 +46,6 @@ export class AppComponent {
           } else {
             this.selectedChatbot = this.user?.chatbots[0] ?? null;
           }
-        }
-      } else if (event instanceof NavigationEnd) {
-        if (routeUrls.includes(event.urlAfterRedirects)) {
-          this.authService.signOut();
-          this.isLoggedIn = false;
         }
       }
     });

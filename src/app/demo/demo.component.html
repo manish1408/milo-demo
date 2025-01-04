@@ -1,0 +1,34 @@
+
+<div class="notification-header">
+    This demo was prepared for the team at <a href="https://www.distinctcloud.io/" target="_blank">Distinct Cloud Labs</a> for {{id}} to showcase AI agent usecases.
+</div>
+<div class="dcl-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <a href="https://www.distinctcloud.io/" target="_blank">
+                    <img class="logo-img" src="https://www.distinctcloud.io/assets/img/logo_light.svg" alt="Distinct Cloud Labs"/>
+                </a>
+            </div>
+            <div class="col-6">
+                <ul class="top-navigation">
+                    <li>
+                        <a href="#">Download PPT </a>
+                    </li>
+                    <li>
+                        <a href="#">About this Agent </a>
+                    </li>
+                    <li>
+                        <a href="#">Contact us </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-3">
+                <button (click)="openchatbot()" class="btn btn-primary float-end">Try AI Agent</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div *ngIf="leadDetail">
+        <iframe class="iframe-website" [src]="websiteURL" width="600" height="400"></iframe>
+    </div>

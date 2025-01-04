@@ -151,7 +151,7 @@
         }
         #chatbot-input button {
             padding: 2px;
-            background-color: #6be3aa;
+            background-color: #04aa5c;
             color: black;
             border: none;
             cursor: pointer;
