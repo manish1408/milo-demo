@@ -1,13 +1,14 @@
-
 <div class="notification-header">
-    This demo was prepared for the team at <a href="https://www.distinctcloud.io/" target="_blank">Distinct Cloud Labs</a> for {{id}} to showcase AI agent usecases.
+    This demo was prepared by <a href="https://www.distinctcloud.io/" target="_blank">Distinct Cloud
+        Labs</a> for {{id}} to showcase AI agent usecases.
 </div>
 <div class="dcl-header">
     <div class="container">
         <div class="row">
             <div class="col-3">
                 <a href="https://www.distinctcloud.io/" target="_blank">
-                    <img class="logo-img" src="https://www.distinctcloud.io/assets/img/logo_light.svg" alt="Distinct Cloud Labs"/>
+                    <img class="logo-img" src="https://www.distinctcloud.io/assets/img/logo_light.svg"
+                        alt="Distinct Cloud Labs" />
                 </a>
             </div>
             <div class="col-6">
@@ -29,6 +30,65 @@
         </div>
     </div>
 </div>
-    <div *ngIf="leadDetail">
-        <iframe class="iframe-website" [src]="websiteURL" width="600" height="400"></iframe>
+<div *ngIf="leadDetail">
+    <iframe class="iframe-website" [src]="websiteURL" width="600" height="400"></iframe>
+</div>
+
+<!-- Add Form Modal -->
+<!-- <div class="modal fade" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background: none">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: white">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">
+                    {{ isEdit ? "Update" : "Create" }} User
+                </h5>
+                <i class="fa-solid fa-xmark" data-bs-dismiss="modal"></i>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addUser">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">User name</label>
+                        <input type="text" [maxlength]="300" formControlName="name"
+                            [ngClass]="{ 'is-invalid': hasError('name') }" class="form-control" />
+                        <div class="invalid-feedback">Name is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Email</label>
+                        <input type="email" [maxlength]="300" formControlName="email"
+                            [ngClass]="{ 'is-invalid': hasError('email') }" class="form-control" />
+                        <div class="invalid-feedback">Email is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Role</label>
+                        <select formControlName="role" [ngClass]="{ 'is-invalid': hasError('role') }"
+                            class="form-control">
+                            <option [value]="user?.role">{{ user.role }}</option>
+                        </select>
+                        <div class="invalid-feedback">Role is required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Assigned Chatbots</label>
+                        <select formControlName="chatbotId" [ngClass]="{ 'is-invalid': hasError('chatbotId') }"
+                            class="form-control">
+                            <option *ngFor="let userChatBot of user?.chatbots" [value]="userChatBot.chatbotId">
+                                {{ userChatBot.chatbotName }}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">ChatBot is required</div>
+                    </div>
+                </form>
+                <div></div>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button data-bs-dismiss="modal" class="btn btn-outline-secondary" #closebutton
+                    (click)="addUser.reset(); isEdit = false">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary" (click)="saveUser()">
+                    Submit
+                </button>
+            </div>
+        </div>
     </div>
+</div> -->
