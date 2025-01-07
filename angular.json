@@ -32,7 +32,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.svg",
-              "src/agent",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "node_modules/monaco-editor",
