@@ -32,7 +32,6 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.svg",
-              "src/assets",
               "src/agent",
               {
                 "glob": "**/*",
