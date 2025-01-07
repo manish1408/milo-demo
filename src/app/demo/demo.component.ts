@@ -39,7 +39,7 @@ export class DemoComponent {
     if (this.route.snapshot.queryParams["website"]) {
       this.id = this.route.snapshot.queryParams["website"];
       this.websiteURL = this.sanitizer.bypassSecurityTrustResourceUrl(
-        "https://" + this.id
+        "https://www." + this.id
       );
     }
     this.getLeadDetail(this.id);
