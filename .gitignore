@@ -3,3 +3,4 @@ node_modules
 dist
 node_modules/@ampproject/remapping/LICENSE
 package.lock.json
+src/agent/node_modules
