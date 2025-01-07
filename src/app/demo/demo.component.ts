@@ -12,6 +12,7 @@ import { ToastService } from "../_services/toast.service";
 import { finalize } from "rxjs";
 import { LeadService } from "../_services/leads.service";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+declare var window:any;
 
 @Component({
   selector: "app-demo",
@@ -59,6 +60,9 @@ export class DemoComponent {
     // Append the script element to the <head> section
     document.head.appendChild(script);
 
+    window.setTimeout(() => {
+      window.initializeMiloChatbot();
+    }, 1000);
     console.log(`Chatbot script injected with ID: ${chatbotId}`);
   }
   openchatbot() {
