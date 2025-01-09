@@ -17,7 +17,7 @@ export class LeadService {
     return this.http.get<any>(`${this._url}/leads/search-lead?domainKeyword=${searchText}`);
   }
   getLeadDetail(rootDomain:string) {
-    return this.http.get<any>(`${this._url}/leads/get-lead-detail?rootDomain=${rootDomain}`);
+    return this.http.get<any>(`${this._url}/leads/get-feed-detail?rootDomain=${rootDomain}`);
   }
   updateLead(data: any,leadId:string) {
     return this.http.put<any>(`${this._url}/leads/leads/update?leadId=${leadId}`, data);
