@@ -1,10 +1,42 @@
 <div class="notification-header">
     This demo was prepared by <a href="https://www.distinctcloud.io/" target="_blank">Distinct Cloud
-        Labs</a> for {{id}} to showcase AI agent usecases.
+        Labs</a> for {{cleanUrl}} to showcase AI agent usecases.
 </div>
 <div class="dcl-header">
     <div class="container">
-        <div class="row">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="https://www.distinctcloud.io/" target="_blank">
+                    <img class="logo-img" src="https://www.distinctcloud.io/assets/img/logo_light.svg"
+                        alt="Distinct Cloud Labs" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#">Download PPT</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a data-bs-toggle="modal" class="nav-link" data-bs-target="#aboutAgent" href="javascript:void(0);">About this Agent
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  data-bs-toggle="modal" class="nav-link" data-bs-target="#contactUs" href="javascript:void(0);">Contact us </a>
+                        </li>
+                    </ul>
+                    <!-- <a href="#" class="btn btn-try ms-lg-3">Try AI Agent</a> -->
+                    <button (click)="openchatbot()" class="btn btn-primary float-end">Try AI Agent</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- <div class="row">
             <div class="col-3">
                 <a href="https://www.distinctcloud.io/" target="_blank">
                     <img class="logo-img" src="https://www.distinctcloud.io/assets/img/logo_light.svg"
@@ -28,7 +60,7 @@
             <div class="col-3">
                 <button (click)="openchatbot()" class="btn btn-primary float-end">Try AI Agent</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div *ngIf="leadDetail">
@@ -45,15 +77,18 @@
                     Custom AI Chat Agent
                 </h5>
                 <i data-bs-dismiss="modal">
-                    <img class="cursor-pointer" src="../../assets/icons/cross-red.svg"/>
+                    <img class="cursor-pointer" src="../../assets/icons/cross-red.svg" />
                 </i>
             </div>
             <div class="modal-body">
                 <p>
-                    Our custom AI chat agent transforms how you engage with users. Embedded on your website, it handles customer support, lead generation, and user engagement seamlessly.
+                    Our custom AI chat agent transforms how you engage with users. Embedded on your website, it handles
+                    customer support, lead generation, and user engagement seamlessly.
                 </p>
                 <p>
-                    Powered by your data, it delivers accurate, brand-aligned responses and integrates easily with custom colors, logos, and instructions. With a simple embed code, it’s the ultimate tool for smarter, more efficient business communication.
+                    Powered by your data, it delivers accurate, brand-aligned responses and integrates easily with
+                    custom colors, logos, and instructions. With a simple embed code, it’s the ultimate tool for
+                    smarter, more efficient business communication.
                 </p>
 
                 <div class="accordion" id="faqAccordion">
@@ -147,7 +182,8 @@
                     <!-- Question 6 with custom header -->
                     <div class="accordion-item">
                         <h2 class="accordion-header custom-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" style="font-weight: bold; color:#04aa5c ;" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button"
+                                style="font-weight: bold; color:#04aa5c ;" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                                 Can Distinct Cloud Labs build custom AI agents for my business?
                             </button>
@@ -158,8 +194,9 @@
                                 Absolutely! Distinct Cloud Labs specializes in creating tailored AI agents that fit your
                                 unique business needs. Whether it’s for customer support, workflow automation, or lead
                                 generation, we design solutions to help you save time and boost efficiency.
-                                <p>Take the first step towards smarter business interactions:</p> 
-                                <a  data-bs-toggle="modal" data-bs-target="#contactUs" href="javascript:void(0);" class="btn btn-primary btn-sm">Contact us Now</a>
+                                <p>Take the first step towards smarter business interactions:</p>
+                                <a data-bs-toggle="modal" data-bs-target="#contactUs" href="javascript:void(0);"
+                                    class="btn btn-primary btn-sm">Contact us Now</a>
                             </div>
                         </div>
                     </div>
@@ -178,129 +215,14 @@
         <div class="modal-content" style="background: white">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">
-                    Custom AI Chat Agent
+                    Contact us
                 </h5>
                 <i data-bs-dismiss="modal">
-                    <img class="cursor-pointer" src="../../assets/icons/cross-red.svg"/>
+                    <img class="cursor-pointer" src="../../assets/icons/cross-red.svg" />
                 </i>
             </div>
             <div class="modal-body">
-                <p>
-                    Our custom AI chat agent transforms how you engage with users. Embedded on your website, it handles customer support, lead generation, and user engagement seamlessly.
-                </p>
-                <p>
-                    Powered by your data, it delivers accurate, brand-aligned responses and integrates easily with custom colors, logos, and instructions. With a simple embed code, it’s the ultimate tool for smarter, more efficient business communication.
-                </p>
-
-                <div class="accordion" id="faqAccordion">
-
-                    <!-- Question 1 -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                What is the custom AI chat agent?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                The custom AI chat agent is an intelligent tool embedded on your website to handle
-                                customer support, lead generation, and user engagement using your business-specific
-                                data.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question 2 -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                How does the AI chat agent learn about my business?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                The AI chat agent learns by connecting to your data sources, uploading files, or
-                                crawling your website, ensuring it provides accurate and context-aware responses.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Can I customize the appearance of the chat agent?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes, the chat agent can be customized with your brand's colors, logos, and instructions
-                                to match your website's style and personality.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question 4 -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                How do I add the chat agent to my website?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Adding the chat agent is simple. Just embed a small code snippet on your website, and
-                                it’s ready to work for you.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question 5 -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                What tasks can the AI chat agent handle?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                The AI chat agent can handle customer queries, automate repetitive tasks, assist with
-                                lead generation, and engage users effectively in real time.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Question 6 with custom header -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header custom-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" style="font-weight: bold; color:#04aa5c ;" data-bs-toggle="collapse"
-                                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                Can Distinct Cloud Labs build custom AI agents for my business?
-                            </button>
-                        </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                            data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Absolutely! Distinct Cloud Labs specializes in creating tailored AI agents that fit your
-                                unique business needs. Whether it’s for customer support, workflow automation, or lead
-                                generation, we design solutions to help you save time and boost efficiency.
-                                <p>Take the first step towards smarter business interactions:</p> 
-                                <a  data-bs-toggle="modal" data-bs-target="#contactUs" href="javascript:void(0);" class="btn btn-primary btn-sm">Contact us Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+               <p>If you like this demo and you are intrested in building AI agents for your business, please email us at - manish&#64;distinctcloud.io</p>
             </div>
 
         </div>

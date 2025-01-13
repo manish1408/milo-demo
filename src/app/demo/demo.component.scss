@@ -6,7 +6,6 @@
 .dcl-header {
     height: 70px;
     background: #000;
-    padding: 10px;
 }
 .logo-img {
     width: 124px;
@@ -40,3 +39,7 @@
 .top-navigation a:hover {
     color: #04aa5c; /* Change color to green on hover */
 }
+.navbar-nav {
+    flex: 1;
+    justify-content: center;
+  }

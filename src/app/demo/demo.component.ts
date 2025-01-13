@@ -25,6 +25,7 @@ export class DemoComponent {
   id: any;
   websiteURL: any;
   chatbotid: any;
+  cleanUrl:any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -41,8 +42,17 @@ export class DemoComponent {
       this.websiteURL = this.sanitizer.bypassSecurityTrustResourceUrl(
         "https://www." + this.id
       );
+      this.cleanUrl = this.id;
+      this.getLeadDetail(this.id);
     }
-    this.getLeadDetail(this.id);
+    if (this.route.snapshot.queryParams["lid"]) {
+      this.id = this.route.snapshot.queryParams["lid"];
+      this.websiteURL = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.route.snapshot.queryParams["url"]
+      );
+      this.cleanUrl = this.route.snapshot.queryParams["url"].replace("https://" , "").replace("http://" , "");
+      this.getLeadDetailbyId(this.id);
+    }
   }
 
   injectChatbotScript(chatbotId:any) {
@@ -66,11 +76,31 @@ export class DemoComponent {
     console.log(`Chatbot script injected with ID: ${chatbotId}`);
   }
   openchatbot() {
-    document.getElementById("chatbot-button-sightera")?.click();
+    document.getElementById("chatbot-button-milodcl")?.click();
   }
   getLeadDetail(rootDomainName: string) {
     this.leadService
       .getLeadDetail(rootDomainName)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: (res: any) => {
+          if (res?.success == true && res?.data) {
+            this.leadDetail = res.data;
+            this.chatbotid = this.leadDetail.chatbot;
+            this.injectChatbotScript(this.chatbotid);
+          } else {
+            this.leadDetail = {};
+          }
+        },
+        error: (err) => {
+          console.log("err: ", err);
+          this.toastr.error(err.error.detail.error);
+        },
+      });
+  }
+  getLeadDetailbyId(leadId: string) {
+    this.leadService
+      .getLeadDetailById(leadId)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: (res: any) => {
