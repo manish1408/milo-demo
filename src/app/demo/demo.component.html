@@ -30,8 +30,11 @@
                             <a  data-bs-toggle="modal" class="nav-link" data-bs-target="#contactUs" href="javascript:void(0);">Contact us </a>
                         </li>
                     </ul>
-                    <a  *ngIf="showCallButton" data-bs-toggle="modal" class="nav-link" data-bs-target="#audioBot" href="javascript:void(0);"  class="btn btn-primary float-end me-2">Try Audio AI Agent</a>
-                    <button (click)="openchatbot()" class="btn btn-primary float-end">Try AI Agent</button>
+                    <div class="d-flex align-items-center gap-3">
+
+                        <a  *ngIf="showCallButton" data-bs-toggle="modal" class="nav-link" data-bs-target="#audioBot" href="javascript:void(0);"  class="btn btn-primary">Try Audio AI Agent</a>
+                        <button (click)="openchatbot()" class="btn btn-primary">Try AI Agent</button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -232,7 +235,7 @@
 <!-- Audio Bot Iframe Modal -->
 <div class="modal fade" id="audioBot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background: none">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content" style="background: #f3f4f6">
             <div class="modal-header justify-content-end border-0">
                 <i data-bs-dismiss="modal">
@@ -240,9 +243,7 @@
                 </i>
             </div>
             <div class="modal-body">
-                <div class="ratio ratio-4x3">
-                <iframe [src]="audioBotURL" width="400" height="300" allow="camera; microphone"></iframe>
-            </div>
+                <iframe [src]="audioBotURL" width="100%" height="600" allow="camera; microphone"></iframe>
             </div>
 
         </div>

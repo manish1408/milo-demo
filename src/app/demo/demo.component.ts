@@ -83,8 +83,8 @@ export class DemoComponent {
   openchatbot() {
     document.getElementById("chatbot-button-milodcl")?.click();
   }
-  loadAudioBot(chatbotId: string) {
-    const domain = this.id; // Replace with the appropriate domain if needed
+  loadAudioBot(chatbotId: string,chatbotName:string) {
+    const domain = chatbotName; // Replace with the appropriate domain if needed
     this.audioBotURL = this.sanitizer.bypassSecurityTrustResourceUrl(`https://realtime-audio-agent.vercel.app/?chatbotId=${chatbotId}&domain=${domain}`);  
     console.log(this.audioBotURL);
   }
@@ -98,7 +98,8 @@ export class DemoComponent {
             this.leadDetail = res.data;
             this.chatbotid = this.leadDetail.chatbot;
             this.injectChatbotScript(this.chatbotid);
-            this.loadAudioBot(this.chatbotid);
+            const chatbotName =res.data?.company ? res.data?.company : res.data?.rootDomain
+            this.loadAudioBot(this.chatbotid,chatbotName);
           } else {
             this.leadDetail = {};
           }
