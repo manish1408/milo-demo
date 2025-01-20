@@ -26,6 +26,7 @@ export class DemoComponent {
   websiteURL: any;
   chatbotid: any;
   cleanUrl:any;
+  audioBotURL:SafeResourceUrl=""
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -78,6 +79,11 @@ export class DemoComponent {
   openchatbot() {
     document.getElementById("chatbot-button-milodcl")?.click();
   }
+  loadAudioBot(chatbotId: string) {
+    const domain = this.id; // Replace with the appropriate domain if needed
+    this.audioBotURL = this.sanitizer.bypassSecurityTrustResourceUrl(`https://realtime-audio-agent.vercel.app/?chatbotId=${chatbotId}&domain=${domain}`);  
+    console.log(this.audioBotURL);
+  }
   getLeadDetail(rootDomainName: string) {
     this.leadService
       .getLeadDetail(rootDomainName)
@@ -88,6 +94,7 @@ export class DemoComponent {
             this.leadDetail = res.data;
             this.chatbotid = this.leadDetail.chatbot;
             this.injectChatbotScript(this.chatbotid);
+            this.loadAudioBot(this.chatbotid);
           } else {
             this.leadDetail = {};
           }
