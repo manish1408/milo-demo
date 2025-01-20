@@ -26,6 +26,7 @@ export class DemoComponent {
   websiteURL: any;
   chatbotid: any;
   cleanUrl:any;
+  showCallButton = false; 
   audioBotURL:SafeResourceUrl=""
   constructor(
     private route: ActivatedRoute,
@@ -53,6 +54,9 @@ export class DemoComponent {
       );
       this.cleanUrl = this.route.snapshot.queryParams["url"].replace("https://" , "").replace("http://" , "");
       this.getLeadDetailbyId(this.id);
+    }
+    if(window.location.href.indexOf('veolia') > -1) {
+      this.showCallButton = true;
     }
   }
 

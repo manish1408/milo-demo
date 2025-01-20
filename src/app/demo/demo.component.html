@@ -19,9 +19,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Download PPT</a>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="https://dclcmsdocs.blob.core.windows.net/dcl-erp-docs/{{leadDetail.pptSlide}}">Download PPT</a>
+                        </li>
                         <li class="nav-item">
                             <a data-bs-toggle="modal" class="nav-link" data-bs-target="#aboutAgent" href="javascript:void(0);">About this Agent
                             </a>
@@ -30,7 +30,7 @@
                             <a  data-bs-toggle="modal" class="nav-link" data-bs-target="#contactUs" href="javascript:void(0);">Contact us </a>
                         </li>
                     </ul>
-                    <a data-bs-toggle="modal" class="nav-link" data-bs-target="#audioBot" href="javascript:void(0);"  class="btn btn-primary float-end me-2">Try Audio AI Agent</a>
+                    <a  *ngIf="showCallButton" data-bs-toggle="modal" class="nav-link" data-bs-target="#audioBot" href="javascript:void(0);"  class="btn btn-primary float-end me-2">Try Audio AI Agent</a>
                     <button (click)="openchatbot()" class="btn btn-primary float-end">Try AI Agent</button>
                 </div>
             </div>
