@@ -233,10 +233,16 @@
 <div class="modal fade" id="audioBot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background: none">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content" style="background: white">
-            
+        <div class="modal-content" style="background: #f3f4f6">
+            <div class="modal-header justify-content-end border-0">
+                <i data-bs-dismiss="modal">
+                    <img class="cursor-pointer" src="../../assets/icons/cross-red.svg" />
+                </i>
+            </div>
             <div class="modal-body">
-                <iframe class="iframe-website" [src]="audioBotURL" width="600" height="400" allow="camera; microphone"></iframe>
+                <div class="ratio ratio-4x3">
+                <iframe [src]="audioBotURL" width="400" height="300" allow="camera; microphone"></iframe>
+            </div>
             </div>
 
         </div>
