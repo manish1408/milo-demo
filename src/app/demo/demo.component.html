@@ -5,7 +5,7 @@
 <div class="dcl-header">
     <div class="container">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black rounded-3">
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="https://www.distinctcloud.io/" target="_blank">
@@ -17,8 +17,8 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                <div class="collapse navbar-collapse py-3 py-lg-0 px-2 px-lg-0" id="navbarNav">
+                    <ul class="navbar-nav ms-auto ">
                         <li class="nav-item">
                             <a class="nav-link" target="_blank" href="https://dclcmsdocs.blob.core.windows.net/dcl-erp-docs/{{leadDetail.pptSlide}}">Download PPT</a>
                         </li>
@@ -30,10 +30,13 @@
                             <a  data-bs-toggle="modal" class="nav-link" data-bs-target="#contactUs" href="javascript:void(0);">Contact us </a>
                         </li>
                     </ul>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3 mt-2 mt-md-0">
 
-                        <a  *ngIf="showCallButton" data-bs-toggle="modal" class="nav-link" data-bs-target="#audioBot" href="javascript:void(0);"  class="btn btn-primary">Try Audio AI Agent</a>
-                        <button (click)="openchatbot()" class="btn btn-primary">Try AI Agent</button>
+                        <a  *ngIf="showCallButton" data-bs-toggle="modal"  data-bs-target="#audioBot" href="javascript:void(0);"  class="btn btn-primary d-flex align-items-center  justify-content-center gap-2 w-100 whitespace-nowrap">
+                            <img class="icon-img" src="assets/icons/microphone-white.svg"/>
+                            Try Audio AI Agent
+                        </a>
+                        <button (click)="openchatbot()" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 w-100 whitespace-nowrap"> <img class="icon-img" src="assets/icons/messages-white.svg"/> Try AI Agent</button>
                     </div>
                 </div>
             </div>
