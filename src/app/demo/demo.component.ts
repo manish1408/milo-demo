@@ -55,7 +55,7 @@ export class DemoComponent {
       this.cleanUrl = this.route.snapshot.queryParams["url"].replace("https://" , "").replace("http://" , "");
       this.getLeadDetailbyId(this.id);
     }
-    if(window.location.href.indexOf('veolia') > -1) {
+    if(window.location.href.indexOf('veolia') > -1 || window.location.href.indexOf('secureprivacy') > -1) {
       this.showCallButton = true;
     }
   }
