@@ -1,0 +1,141 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="content text-center">
+                <a href="https://www.distinctcloud.io/" target="_blank">
+                    <img src="assets/icons/dcl-logo-dark.png" alt="" class="dcl-logo" />
+                </a>
+                <p>
+                    We help companies to build software products in a fraction of
+                    the time and cost of traditional development.
+                </p>
+            </div>
+
+
+            <form [formGroup]="contactForm" class="mt-5">
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-inner">
+                            <label for="name" class="form-label">Full name</label>
+                            <input type="text" formControlName="name" id="name" class="form-control"
+                                [ngClass]="{ 'is-invalid': hasError('name') }" />
+                            <div class="invalid-feedback">Full name is required</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-inner">
+                            <label for="email" class="form-label">Business email *</label>
+                            <input type="email" formControlName="email" id="email" class="form-control" [ngClass]="{
+                            'is-invalid': hasError('email') || hasEmailFormatError() || hasInvalidBusinessEmailError()
+                          }" />
+                            <div *ngIf="hasInvalidBusinessEmailError()" class="invalid-feedback">
+                                Business email addresses from Gmail, Google, Yahoo, Outlook, Hotmail, and MSN are not
+                                allowed.
+                            </div>
+                            <div *ngIf="hasEmailFormatError()" class="invalid-feedback">
+                                Invalid email format
+                            </div>
+                            <div *ngIf="hasError('email') && !hasEmailFormatError() && !hasInvalidBusinessEmailError()"
+                                class="invalid-feedback">
+                                Email is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-inner">
+                            <label for="rootDomain" class="form-label">Website *</label>
+                            <input type="text" formControlName="rootDomain" id="rootDomain" class="form-control"
+                                [ngClass]="{
+                            'is-invalid': hasError('rootDomain') || hasWebsiteFormatError()
+                          }" />
+                            <div *ngIf="hasWebsiteFormatError()" class="invalid-feedback">
+                                Invalid website URL format
+                            </div>
+                            <div *ngIf="hasError('rootDomain') && !hasWebsiteFormatError()" class="invalid-feedback">
+                                Website is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="form-inner">
+                            <label for="company" class="form-label">Company name *</label>
+                            <input type="text" formControlName="company" id="company" class="form-control"
+                                [ngClass]="{ 'is-invalid': hasError('company') }" />
+                            <div class="invalid-feedback">Company name is required</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <div class="form-inner">
+                            <label for="phoneCodeSelect" class="form-label">Phone Code</label>
+                            <select class="form-select" id="phoneCodeSelect" formControlName="phoneCode">
+                                <option value="+1" selected>🇺🇸 United States (+1)</option>
+                                <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                                <option value="+1">🇨🇦 Canada (+1)</option>
+                                <option value="+971">🇦🇪 UAE (+971)</option>
+                                <option value="+49">🇩🇪 Germany (+49)</option>
+                                <option value="+31">🇳🇱 Netherlands (+31)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 mb-4">
+                        <div class="form-inner">
+                            <label for="phone1" class="form-label">Phone *</label>
+                            <input type="text" formControlName="phone1" id="phone1" class="form-control"
+                                [ngClass]="{ 'is-invalid': hasError('phone1') }" />
+                            <div class="invalid-feedback">Phone is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-inner">
+                            <button
+                                class="btn btn-primary d-flex align-items-center justify-content-center gap-2 w-100 whitespace-nowrap"
+                                type="submit" data-text="Submit" (click)="onSubmit()" [disabled]="isLoading">
+                                <span>Submit</span>
+                                <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2"
+                                    role="status"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ul class="rating-area mt-5">
+                <li>
+                    <a href="https://clutch.co/profile/distinct-cloud-labs" target="_blank" class="single-rating">
+                        <div class="review">
+                            <h3>Review On</h3>
+                            <img src="assets/img/clutch-logo-white.svg" alt="" />
+                        </div>
+                        <div class="rating">
+                            <ul class="star">
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.goodfirms.co/company/distinct-cloud-labs" target="_blank"
+                        class="single-rating google">
+                        <div class="review">
+                            <h3>Review On</h3>
+                            <img src="assets/img/goodfirms.svg" style="width: 116px" alt="" />
+                        </div>
+                        <div class="rating">
+                            <ul class="star goodfirms">
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -42,4 +42,7 @@ export class LeadService {
   deleteLead(leadId:string) {
     return this.http.delete<any>(`${this._url}/prompts/${leadId}`);
   }
+  createLead(data:any){
+    return this.http.post(`${this._url}/leads/create-lead-assets`, data);
+  }
 }

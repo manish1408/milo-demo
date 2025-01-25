@@ -5,6 +5,7 @@ import { AuthGuard } from './_guards/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'demo', pathMatch: 'full' },
   { path: 'demo', loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule) },
+  { path: 'contact-us', loadChildren: () => import('./contact-us/contact-us.module').then(m => m.ContactUsModule) },
 ];
 
 @NgModule({
