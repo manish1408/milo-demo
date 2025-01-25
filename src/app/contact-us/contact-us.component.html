@@ -29,15 +29,14 @@
                             'is-invalid': hasError('email') || hasEmailFormatError() || hasInvalidBusinessEmailError()
                           }" />
                             <div *ngIf="hasInvalidBusinessEmailError()" class="invalid-feedback">
-                                Business email addresses from Gmail, Google, Yahoo, Outlook, Hotmail, and MSN are not
-                                allowed.
+                                Business email addresses from common providers are not allowed.
                             </div>
                             <div *ngIf="hasEmailFormatError()" class="invalid-feedback">
                                 Invalid email format
                             </div>
                             <div *ngIf="hasError('email') && !hasEmailFormatError() && !hasInvalidBusinessEmailError()"
                                 class="invalid-feedback">
-                                Email is required
+                                Business email is required
                             </div>
                         </div>
                     </div>
@@ -79,10 +78,10 @@
                     </div>
                     <div class="col-lg-8 mb-4">
                         <div class="form-inner">
-                            <label for="phone1" class="form-label">Phone *</label>
+                            <label for="phone1" class="form-label">Phone number *</label>
                             <input type="text" formControlName="phone1" id="phone1" class="form-control"
                                 [ngClass]="{ 'is-invalid': hasError('phone1') }" />
-                            <div class="invalid-feedback">Phone is required</div>
+                            <div class="invalid-feedback">Phone number is required</div>
                         </div>
                     </div>
 
