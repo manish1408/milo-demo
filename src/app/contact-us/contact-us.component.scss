@@ -1,51 +1,59 @@
+.contact-wrapper {
+  height: 100vh;
+  overflow: auto;
+}
+
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 img {
-    display: inline-block;
-    max-width: 100%;
-    height: auto;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
 }
-.content{
+
+.content {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-direction: column;
+
   .dcl-logo {
     width: 200px;
   }
 }
-  
-  .rating {
-    line-height: 1;
-    align-self: flex-end !important;
-    .star {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 0 !important;
-      line-height: 1;
-  
-      li {
-       
-      }
-    }
-    
-  }
 
-.rating-area > li .single-rating {
+.rating {
+  line-height: 1;
+  align-self: flex-end !important;
+
+  .star {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
+    margin-bottom: 0 !important;
+    line-height: 1;
+
+    li {}
+  }
+
 }
 
-a{
+.rating-area>li .single-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a {
   text-decoration: none;
+
   h3 {
     color: #000000;
     font-family: var(--font-inter);
@@ -60,9 +68,19 @@ i {
   color: #e62415;
   font-size: 12px;
 }
+
 .goodfirms {
   i {
-          color: #FFC107;
-          font-size: 12px;
-        }
-      }
+    color: #FFC107;
+    font-size: 12px;
+  }
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+  color: #6c6c6c !important;
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+  outline: 0;
+  box-shadow: var(--bs-btn-focus-box-shadow);
+}
