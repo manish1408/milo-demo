@@ -15,20 +15,18 @@
 
             <form [formGroup]="contactForm" class="mt-5">
                 <div class="row">
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-3">
                         <div class="form-inner">
-                            <label for="name" class="form-label">Full name</label>
                             <input type="text" formControlName="name" id="name" class="form-control"
-                                [ngClass]="{ 'is-invalid': hasError('name') }" />
+                                [ngClass]="{ 'is-invalid': hasError('name') }" placeholder="Full name"/>
                             <div class="invalid-feedback">Full name is required</div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-3">
                         <div class="form-inner">
-                            <label for="email" class="form-label">Business email *</label>
                             <input type="email" formControlName="email" id="email" class="form-control" [ngClass]="{
                             'is-invalid': hasError('email') || hasEmailFormatError() || hasInvalidBusinessEmailError()
-                          }" />
+                          }" placeholder="Business email"/>
                             <div *ngIf="hasInvalidBusinessEmailError()" class="invalid-feedback">
                                 Business email addresses from common providers are not allowed.
                             </div>
@@ -41,13 +39,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-3">
                         <div class="form-inner">
-                            <label for="rootDomain" class="form-label">Website *</label>
                             <input type="text" formControlName="rootDomain" id="rootDomain" class="form-control"
                                 [ngClass]="{
                             'is-invalid': hasError('rootDomain') || hasWebsiteFormatError()
-                          }" />
+                          }" placeholder="Website"/>
                             <div *ngIf="hasWebsiteFormatError()" class="invalid-feedback">
                                 Invalid website URL format
                             </div>
@@ -56,17 +53,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-4">
+                    <div class="col-lg-6 mb-3">
                         <div class="form-inner">
-                            <label for="company" class="form-label">Company name *</label>
                             <input type="text" formControlName="company" id="company" class="form-control"
-                                [ngClass]="{ 'is-invalid': hasError('company') }" />
+                                [ngClass]="{ 'is-invalid': hasError('company') }"  placeholder="Company name"/>
                             <div class="invalid-feedback">Company name is required</div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-4 mb-3">
                         <div class="form-inner">
-                            <label for="phoneCodeSelect" class="form-label">Phone Code</label>
                             <select class="form-select" id="phoneCodeSelect" formControlName="phoneCode">
                                 <option value="+1" selected>🇺🇸 United States (+1)</option>
                                 <option value="+44">🇬🇧 United Kingdom (+44)</option>
@@ -79,9 +74,8 @@
                     </div>
                     <div class="col-lg-8 mb-4">
                         <div class="form-inner">
-                            <label for="phone1" class="form-label">Phone number *</label>
                             <input type="text" formControlName="phone1" id="phone1" class="form-control"
-                                [ngClass]="{ 'is-invalid': hasError('phone1') }" />
+                                [ngClass]="{ 'is-invalid': hasError('phone1') }" placeholder="Phone number"/>
                             <div class="invalid-feedback">Phone number is required</div>
                         </div>
                     </div>
@@ -99,14 +93,14 @@
                     </div>
                 </div>
             </form>
-            <ul class="rating-area mt-5">
+            <ul class="rating-area mt-4">
                 <li>
                     <a href="https://clutch.co/profile/distinct-cloud-labs" target="_blank" class="single-rating">
                         <div class="review">
-                            <h3>Review On</h3>
-                            <img src="assets/img/clutch-logo-white.svg" alt="" />
+                            <h3>Review on</h3>
                         </div>
-                        <div class="rating">
+                        <div class="rating d-flex flex-column flex-md-row gap-2 align-items-md-end">
+                            <img src="assets/img/clutch-logo-white.svg" alt="" />
                             <ul class="star">
                                 <li><i class="fa-solid fa-star"></i></li>
                                 <li><i class="fa-solid fa-star"></i></li>
@@ -121,10 +115,11 @@
                     <a href="https://www.goodfirms.co/company/distinct-cloud-labs" target="_blank"
                         class="single-rating google">
                         <div class="review">
-                            <h3>Review On</h3>
-                            <img src="assets/img/goodfirms.svg" style="width: 116px" alt="" />
+                            <h3>Review on</h3>
+                            
                         </div>
-                        <div class="rating">
+                        <div class="rating d-flex flex-column flex-md-row gap-2 align-items-md-end">
+                            <img src="assets/img/goodfirms.svg" style="width: 116px" alt="" />
                             <ul class="star goodfirms">
                                 <li><i class="fa-solid fa-star"></i></li>
                                 <li><i class="fa-solid fa-star"></i></li>

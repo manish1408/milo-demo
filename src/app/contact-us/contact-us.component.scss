@@ -2,6 +2,10 @@
   height: 100vh;
   overflow: auto;
 }
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 ul {
   list-style: none;
@@ -30,16 +34,13 @@ img {
 }
 
 .rating {
-  line-height: 1;
-  align-self: flex-end !important;
-
   .star {
     display: flex;
     align-items: center;
     gap: 4px;
     margin-bottom: 0 !important;
     line-height: 1;
-
+    justify-content: flex-start;
     li {}
   }
 
@@ -47,8 +48,10 @@ img {
 
 .rating-area>li .single-rating {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   gap: 8px;
+  justify-content: flex-start;
 }
 
 a {
@@ -61,6 +64,8 @@ a {
     font-weight: 400;
     line-height: 1;
     text-decoration: none;
+    white-space: nowrap;
+    margin: 0;
   }
 }
 
